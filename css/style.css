@@ -151,7 +151,7 @@ h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  row-gap: 0.3125rem;
+  row-gap: 0.625rem;
 }
 
 .header__container::before {
