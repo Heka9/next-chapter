@@ -185,6 +185,8 @@ h6 {
 
 .header__logo {
   text-align: center;
+  position: relative;
+  z-index: 5;
 }
 
 .header__logo img {
@@ -193,6 +195,8 @@ h6 {
 
 .header__right-part {
   text-align: center;
+  position: relative;
+  z-index: 5;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(8%, rgba(72, 94, 213, 0.787552521)), color-stop(82%, rgba(91, 101, 153, 0.3701855742)));
   background: -o-linear-gradient(top, rgba(72, 94, 213, 0.787552521) 8%, rgba(91, 101, 153, 0.3701855742) 82%);
   background: linear-gradient(180deg, rgba(72, 94, 213, 0.787552521) 8%, rgba(91, 101, 153, 0.3701855742) 82%);
@@ -233,6 +237,8 @@ h6 {
 }
 
 .header__search {
+  position: relative;
+  z-index: 5;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 1.875rem;
           flex: 0 0 1.875rem;
@@ -276,9 +282,6 @@ h6 {
 }
 
 .menu__item {
-  padding: 0.3125rem 1.25rem;
-  border-radius: 0.3125rem;
-  border: 0.0625rem solid #888888;
   -webkit-transition: background-color 0.3s ease 0s;
   -o-transition: background-color 0.3s ease 0s;
   transition: background-color 0.3s ease 0s;
@@ -295,62 +298,7 @@ h6 {
 }
 
 .icon-menu {
-  display: block;
-  position: relative;
-  width: 1.875rem;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 1.875rem;
-          flex: 0 0 1.875rem;
-  height: 1.125rem;
-  z-index: 5;
-}
-
-.icon-menu span,
-.icon-menu::before,
-.icon-menu::after {
-  content: "";
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  right: 0;
-  position: absolute;
-  width: 100%;
-  height: 0.1875rem;
-  background-color: #000;
-  border-radius: 0.125rem;
-}
-
-.icon-menu::before {
-  top: 0;
-}
-
-.icon-menu::after {
-  bottom: 0;
-}
-
-.icon-menu span {
-  top: 50%;
-  -webkit-transform: translate(0px, -50%);
-      -ms-transform: translate(0px, -50%);
-          transform: translate(0px, -50%);
-}
-
-.menu-open .icon-menu span {
-  width: 0;
-}
-
-.menu-open .icon-menu::before {
-  top: calc(50% - 0.0625rem);
-  -webkit-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.menu-open .icon-menu::after {
-  bottom: calc(50% - 0.0625rem);
-  -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  display: none;
 }
 
 .footer {
@@ -1347,6 +1295,12 @@ h6 {
 }
 
 @media (min-width: 47.99875em) {
+  .menu__item {
+    padding: 0.3125rem 1.25rem;
+    border-radius: 0.3125rem;
+    border: 0.0625rem solid #888888;
+  }
+
   .books__body {
     padding-bottom: 0.625rem;
     border-bottom: 0.0625rem solid #888888;
@@ -1639,6 +1593,24 @@ h6 {
             column-gap: 1.25rem;
   }
 
+  .header__container::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background-color: #797979;
+    -webkit-transition: left 0.3s ease 0s;
+    -o-transition: left 0.3s ease 0s;
+    transition: left 0.3s ease 0s;
+  }
+
+  .menu-open .header__container::after {
+    left: 0;
+  }
+
   .header__container {
     -ms-grid-columns: auto 1fr;
     grid-template-columns: auto 1fr;
@@ -1646,6 +1618,10 @@ h6 {
 
   .header__left-part {
     display: none;
+  }
+
+  .header__logo {
+    max-width: 11.25rem;
   }
 
   .header__logo img {
@@ -1660,6 +1636,94 @@ h6 {
     -ms-grid-column-span: 2;
     grid-column: span 2;
     gap: 1.25rem;
+  }
+
+  .menu__body {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+    padding: 10.625rem 1.875rem 3.125rem 1.875rem;
+    -webkit-transition: left 0.3s ease 0s;
+    -o-transition: left 0.3s ease 0s;
+    transition: left 0.3s ease 0s;
+  }
+
+  .menu-open .menu__body {
+    left: 0;
+  }
+
+  .menu__list {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 1.25rem;
+  }
+
+  .menu__item a {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  .icon-menu {
+    display: block;
+    position: relative;
+    width: 1.875rem;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 1.875rem;
+            flex: 0 0 1.875rem;
+    height: 1.125rem;
+    z-index: 5;
+  }
+
+  .icon-menu span,
+  .icon-menu::before,
+  .icon-menu::after {
+    content: "";
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    right: 0;
+    position: absolute;
+    width: 100%;
+    height: 0.1875rem;
+    background-color: #000;
+    border-radius: 0.125rem;
+  }
+
+  .icon-menu::before {
+    top: 0;
+  }
+
+  .icon-menu::after {
+    bottom: 0;
+  }
+
+  .icon-menu span {
+    top: calc(50% - 0.09375rem);
+  }
+
+  .menu-open .icon-menu span {
+    width: 0;
+  }
+
+  .menu-open .icon-menu::before {
+    top: calc(50% - 0.09375rem);
+    -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+
+  .menu-open .icon-menu::after {
+    bottom: calc(50% - 0.09375rem);
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
   }
 
   .aside-block {
@@ -1787,7 +1851,26 @@ h6 {
   }
 }
 
+@media (max-width: 47.99875em) and (any-hover: none) {
+  .icon-menu {
+    cursor: default;
+  }
+}
+
+@media (max-width: 47.99875em) and (max-width: 29.99875em) {
+  .icon-menu {
+    width: 1.5625rem;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 1.5625rem;
+            flex: 0 0 1.5625rem;
+  }
+}
+
 @media (max-width: 29.99875em) {
+  .header__logo {
+    max-width: 8.125rem;
+  }
+
   .header__logo img {
     max-height: 5rem;
   }
@@ -1806,13 +1889,6 @@ h6 {
 
   .header__icons {
     gap: 0.9375rem;
-  }
-
-  .icon-menu {
-    width: 1.5625rem;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 1.5625rem;
-            flex: 0 0 1.5625rem;
   }
 
   .create-book {
@@ -2230,11 +2306,5 @@ h6 {
 
   .profile-aside__link:hover {
     text-decoration: underline;
-  }
-}
-
-@media (any-hover: none) {
-  .icon-menu {
-    cursor: default;
   }
 }
